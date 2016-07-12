@@ -1,0 +1,21 @@
+2.0.0
+- NEW: Remove "Console Window" to focus on the feature of "enable/disable logs". 
+       We provide another more professional plugin named "Device Console" to supply the feature of "view logs on devices".
+       You can choose one or both as you see fit.
+
+1.3.5
+- NEW: Support for dragging logs of the Console Window.
+
+1.3.0
+- NEW: Add "Auto Scroll To Bottom" button in the Menu Window.
+
+1.2.0
+- NEW: Add options to support the screen console on a high resolution device.
+- NEW: Add a Menu Window to adjust the parameters of the Console Window.
+
+1.1.0
+- NEW: Add two options for LoggerOption. (enableAllForDevelopmentBuild, enableAllForEditorMode)
+- NEW: Add a tool for batch adding "using DisableLogging;" to the scripts which call Logger.LogXXX().
+
+1.0.0
+- Initial Release

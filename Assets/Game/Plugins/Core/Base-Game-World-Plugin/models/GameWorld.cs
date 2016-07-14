@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PocketWorld: World {
+public class GameWorld: World {
 
 	public override IEnumerator OnGenerateWorld(){
 		//Generate a terrain id
@@ -10,8 +10,8 @@ public class PocketWorld: World {
 		Transform t = (Transform) GameObject.Instantiate(TerrainConverter.main.worldData, new Vector3(0,0,0), Quaternion.Euler(0,0,0));
 		//The world data object contains a writer
 		//Write the world id and type using the writer
-		t.GetComponent<WorldDataWriter> ().terrain = terrain;
-		t.GetComponent<WorldDataWriter> ().type = TerrainConverter.main.type [terrain];
+		t.GetComponent<GameWorldDataWriter> ().terrain = terrain;
+		t.GetComponent<GameWorldDataWriter> ().type = TerrainConverter.main.type [terrain];
 		//Add the world data to the new world
 		WorldObjectCache.Add (UniqueIDGenerator.GetUniqueID(), t.GetComponent<WorldObject>());
 		//Give a second to make sure the terrain is created

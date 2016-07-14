@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WorldDataWriter : MonoBehaviour {
+public class GameWorldDataWriter : MonoBehaviour {
 	public int terrain = -1;
 	public string type = "";
 
-	void Update () {
+	void OnUpdate () {
 		//Get the world object of this terrain object
 		WorldObject w = GetComponent<WorldObject> ();
 

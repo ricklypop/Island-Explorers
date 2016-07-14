@@ -3,16 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class WorldPlayer : MonoBehaviour, Action {
-	public float movementVelocity = GameConstants.DEFAULTMOVEMENTVELOCITY;
+public class GameWorldPlayer : Entity {
+	public float movementVelocity = BaseGameConstants.DEFAULTMOVEMENTVELOCITY;
 
-	private Entity e;
-	private WorldObject obj;
 	private float time;
 
-	void Start(){
-		e = GetComponent<Entity> ();
-		obj = GetComponent<WorldObject> ();
+	protected override void OnEntityStart(){
 		if (!obj.vars.ContainsKey ("pX")) {
 			obj.vars.Add ("pX", "");
 			obj.vars.Add ("pY", "");
@@ -20,7 +16,7 @@ public class WorldPlayer : MonoBehaviour, Action {
 	}
 
 	#region Action implementation
-	public void Act (Entity e)
+	public override void Act ()
 	{
 		if (Input.GetMouseButtonUp (0)) {
 			Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -35,8 +31,8 @@ public class WorldPlayer : MonoBehaviour, Action {
 	}
 	#endregion
 
-	void Update(){
-		if (obj.vars ["pX"] != "" && obj.vars ["pY"] != "" && time >= GameConstants.POINTUPDATETIME) {
+	protected override void OnEntityUpdate(){
+		if (obj.vars ["pX"] != "" && obj.vars ["pY"] != "" && time >= BaseGameConstants.POINTUPDATETIME) {
 			UpdatePoint ();
 			time = 0;
 		}else if(obj.vars ["pX"] != "" && obj.vars ["pY"] != "")
@@ -85,7 +81,7 @@ public class WorldPlayer : MonoBehaviour, Action {
 	void CheckForStop(){
 		Vector2 currentPos = new Vector2 (transform.position.x, transform.position.z);
 		Vector2 goToPos = new Vector2 (float.Parse (obj.vars ["pX"]), float.Parse (obj.vars ["pY"]));
-		if (Vector2.Distance (currentPos, goToPos) <= GameConstants.POINTRELATIVEDISTANCE) {
+		if (Vector2.Distance (currentPos, goToPos) <= BaseGameConstants.POINTRELATIVEDISTANCE) {
 			obj.vars ["pX"] = "";
 			obj.vars ["pY"] = "";
 			obj.vars ["mV"] = "0";

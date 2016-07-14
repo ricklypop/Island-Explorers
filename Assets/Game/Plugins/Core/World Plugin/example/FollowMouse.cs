@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowMouse : MonoBehaviour, Action {
+public class FollowMouse : Entity {
 	private bool moving;
 
-	public void Act (Entity e)
+	public override void Act ()
 	{
 		if (Input.GetKey (KeyCode.Q) && !moving) {
-			e.LocalMove (1f, World.FindRotation (transform.position, Camera.main.ScreenToWorldPoint (Input.mousePosition)));
-			e.LocalChangeTempPlayer ();
+			LocalMove (1f, World.FindRotation (transform.position, Camera.main.ScreenToWorldPoint (Input.mousePosition)));
+			LocalChangeTempPlayer ();
 			moving = true;
 		} 
 
 		if (moving && !Input.GetKey (KeyCode.Q)){
-			e.LocalStopMove ();
-			e.LocalRemoveTempPlayer ();
+			LocalStopMove ();
+			LocalRemoveTempPlayer ();
 			moving = false;
 		}
 	}

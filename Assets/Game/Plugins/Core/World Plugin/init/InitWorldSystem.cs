@@ -7,5 +7,7 @@ public class InitWorldSystem : MonoBehaviour {
 			Constants.vars.Add (s);
 		foreach (string s in Constants.METHODS)
 			Constants.methods.Add (s);
+
+		StartCoroutine (World.GenerateWorld());
 	}
 }

@@ -72,21 +72,21 @@ public abstract class TreeSpawnObject : MonoBehaviour {
 	Transform SpawnObject ( Transform prefab, Vector3 worldPos  ){
 		RaycastHit hit = new RaycastHit();
 		if (Physics.Raycast(worldPos, Vector3.down, out hit)) {
-			Transform go = null;
+			Transform spawn = null;
 			if (prefab != null) {
-				go = (Transform)Instantiate (prefab, hit.point, Quaternion.identity);
-				if(go.GetComponent<TreeSpawnObject>().spin)
-					go.eulerAngles = new Vector3 (go.eulerAngles.x,Random.Range (0, 359), go.eulerAngles.z);
-				if(go.GetComponent<TreeSpawnObject>().slopeTilt)
-					go.rotation = Quaternion.FromToRotation(go.up, hit.normal) * go.rotation;
+				spawn = (Transform)Instantiate (prefab, hit.point, Quaternion.identity);
+				if(spawn.GetComponent<TreeSpawnObject>().spin)
+					spawn.eulerAngles = new Vector3 (spawn.eulerAngles.x,Random.Range (0, 359), spawn.eulerAngles.z);
+				if(spawn.GetComponent<TreeSpawnObject>().slopeTilt)
+					spawn.rotation = Quaternion.FromToRotation(spawn.up, hit.normal) * spawn.rotation;
 
-				OnSpawn ();
+				OnSpawn (spawn);
 //				WORLD OBJECT SPAWN EXAMPLE
 //				string id = UniqueIDGenerator.GetUniqueID ();
 //				go.GetComponent<WorldObject> ().id = id;
 //				WorldObjectCache.Add (id, go.GetComponent<WorldObject> ());
 			}
-			return go;
+			return spawn;
 		}
 		return null;
 	}
@@ -125,5 +125,5 @@ public abstract class TreeSpawnObject : MonoBehaviour {
 
 	public abstract void OnDespawn ();
 
-	public abstract void OnSpawn ();
+	public abstract void OnSpawn (Transform spawn);
 }

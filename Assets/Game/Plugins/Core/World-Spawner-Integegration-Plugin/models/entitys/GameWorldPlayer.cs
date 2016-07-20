@@ -52,11 +52,11 @@ public class GameWorldPlayer : Entity {
 	/// <param name="direction">Direction.</param>
 	public void LocalMovePoint(Vector2 point, float newVelocity){
 		Dictionary<int, string> args = new Dictionary<int, string> ();
-		args.Add (Constants.vars.Compress("velocity"), newVelocity.ToString());
-		args.Add (Constants.vars.Compress("x"), point.x.ToString());
-		args.Add (Constants.vars.Compress("z"), point.y.ToString());
+		args.Add ((int) WorldConstants.WorldVars.VELOCITY, newVelocity.ToString());
+		args.Add ((int) WorldConstants.WorldVars.X, point.x.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Y, point.y.ToString());
 		ClientMovePoint (args);
-		obj.QueueChange (obj.id, "ClientMovePoint", args);
+		obj.QueueChange (obj.id, (int) BaseGameConstants.BaseGameMethods.MOVE_CLIENT_POINT, args);
 	}
 
 	/// <summary>
@@ -64,27 +64,59 @@ public class GameWorldPlayer : Entity {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientMovePoint(Dictionary<int, string> par){
-		obj.vars["pX"] = float.Parse (par [Constants.vars.Compress ("x")]).ToString();
-		obj.vars["pY"] = float.Parse (par [Constants.vars.Compress ("z")]).ToString();
-		obj.vars ["r"] = JsonConvert.SerializeObject (
-			new SerializableTransform (World.FindRotation(new Vector3(transform.position.x, 0, transform.position.z),
-				new Vector3(float.Parse (par [Constants.vars.Compress ("x")]), 0, float.Parse (par [Constants.vars.Compress ("z")]))).eulerAngles));
-		obj.vars["mV"] = float.Parse (par [Constants.vars.Compress ("velocity")]).ToString();
+
+
+		obj.vars[StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_X)] = 
+			float.Parse (par [(int) WorldConstants.WorldVars.X]).ToString();
+
+		obj.vars[StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_Y)] =
+			float.Parse (par [(int) WorldConstants.WorldVars.Y]).ToString();
+		
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.ROTATION)] = 
+			JsonConvert.SerializeObject (
+				
+				new SerializableTransform (World.FindRotation(new Vector3(transform.position.x, 0, transform.position.z),
+					
+				new Vector3(float.Parse (par [(int) WorldConstants.WorldVars.X]), 
+							0, float.Parse (par [(int) WorldConstants.WorldVars.Z]))).eulerAngles)
+				
+			);
+		
+		obj.vars[StringValue.GetStringValue(WorldConstants.WorldVars.VELOCITY)] =
+			float.Parse (par [(int) WorldConstants.WorldVars.VELOCITY]).ToString();
+		
 	}
 
 	void UpdatePoint(){
-		obj.vars ["r"] = JsonConvert.SerializeObject (
-			new SerializableTransform (World.FindRotation(new Vector3(transform.position.x, 0, transform.position.z),
-				new Vector3(float.Parse (obj.vars ["pX"]), 0, float.Parse (obj.vars ["pY"]))).eulerAngles));
+
+
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.ROTATION)] =
+			JsonConvert.SerializeObject (
+				
+				new SerializableTransform (World.FindRotation(new Vector3(transform.position.x, 0, transform.position.z),
+					
+				new Vector3(float.Parse (obj.vars [StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_X)]), 
+					0, float.Parse (obj.vars [StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_Y)]))).eulerAngles)
+				
+			);
+
+
 	}
 
 	void CheckForStop(){
+		
 		Vector2 currentPos = new Vector2 (transform.position.x, transform.position.z);
-		Vector2 goToPos = new Vector2 (float.Parse (obj.vars ["pX"]), float.Parse (obj.vars ["pY"]));
+
+		Vector2 goToPos = new Vector2 (float.Parse (obj.vars [StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_X)]), 
+			float.Parse (obj.vars [StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_Y)]));
+		
 		if (Vector2.Distance (currentPos, goToPos) <= BaseGameConstants.POINTRELATIVEDISTANCE) {
-			obj.vars ["pX"] = "";
-			obj.vars ["pY"] = "";
-			obj.vars ["mV"] = "0";
+			
+			obj.vars [StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_X)] = "";
+			obj.vars [StringValue.GetStringValue(BaseGameConstants.BaseGameVars.POINT_Y)] = "";
+			obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.VELOCITY)] = "0";
+
 		}
+
 	}
 }

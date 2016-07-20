@@ -1,9 +1,8 @@
 ﻿ using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
-/// <summary>
+
 /// An entity is an object that can move and or contains it's own intelligence
 /// </summary>
 public abstract class Entity : MonoBehaviour {
@@ -32,7 +31,7 @@ public abstract class Entity : MonoBehaviour {
 	void Start(){
 		obj = GetComponent<WorldObject> ();
 		LoadBalancer.Balance ();
-		instantTurn = Constants.DEFAULTINSTANTTURN;
+		instantTurn = WorldConstants.DEFAULTINSTANTTURN;
 
 		if(!obj.vars.ContainsKey("tP"))
 			obj.vars.Add ("tP", "");
@@ -69,8 +68,8 @@ public abstract class Entity : MonoBehaviour {
 		if (moveVelocity != 0) {
 			if(instantTurn)
 				transform.eulerAngles = new Vector3(rotation.x, rotation.y, rotation.z);
-			transform.position += (transform.forward / Constants.MOVEMENTFACTOR) * Time.deltaTime * moveVelocity;
-			transform.position = new Vector3 (transform.position.x, transform.position.y, Constants.DEFAULTZ);
+			transform.position += (transform.forward / WorldConstants.MOVEMENTFACTOR) * Time.deltaTime * moveVelocity;
+			transform.position = new Vector3 (transform.position.x, transform.position.y, WorldConstants.DEFAULTZ);
 			moveTime = 0;
 		}
 
@@ -99,11 +98,11 @@ public abstract class Entity : MonoBehaviour {
 		obj.vars["r"] = JsonConvert.SerializeObject(new SerializableTransform(direction.eulerAngles));
 
 		Dictionary<int, string> args = new Dictionary<int, string> ();
-		args.Add (Constants.vars.Compress("velocity"), newVelocity.ToString());
-		args.Add (Constants.vars.Compress("rX"), direction.eulerAngles.x.ToString());
-		args.Add (Constants.vars.Compress("rY"), direction.eulerAngles.y.ToString());
-		args.Add (Constants.vars.Compress("rZ"), direction.eulerAngles.z.ToString());
-		obj.QueueChange (obj.id, "ClientMove", args);
+		args.Add ((int) WorldConstants.WorldVars.VELOCITY, newVelocity.ToString());
+		args.Add ((int) WorldConstants.WorldVars.ROTATION_X, direction.eulerAngles.x.ToString());
+		args.Add ((int) WorldConstants.WorldVars.ROTATION_Y, direction.eulerAngles.y.ToString());
+		args.Add ((int) WorldConstants.WorldVars.ROTATION_Z, direction.eulerAngles.z.ToString());
+		obj.QueueChange (obj.id, (int) WorldConstants.WorldMethods.MOVE_CLIENT, args);
 	}
 
 
@@ -113,12 +112,12 @@ public abstract class Entity : MonoBehaviour {
 	public void LocalStopMove(){
 		obj.vars ["mV"] = "0";
 		Dictionary<int, string> args = new Dictionary<int, string> ();
-		args.Add (Constants.vars.Compress("x"), transform.position.x.ToString());
-		args.Add (Constants.vars.Compress("y"), transform.position.y.ToString());
-		args.Add (Constants.vars.Compress("rX"), transform.eulerAngles.x.ToString());
-		args.Add (Constants.vars.Compress("rY"), transform.eulerAngles.y.ToString());
-		args.Add (Constants.vars.Compress("z"), transform.eulerAngles.z.ToString());
-		obj.QueueChange (obj.id, "ClientStopMove", args);
+		args.Add ((int) WorldConstants.WorldVars.X, transform.position.x.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Y, transform.position.y.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Z, transform.eulerAngles.z.ToString());
+		args.Add ((int) WorldConstants.WorldVars.ROTATION_X, transform.eulerAngles.x.ToString());
+		args.Add ((int) WorldConstants.WorldVars.ROTATION_Y, transform.eulerAngles.y.ToString());
+		obj.QueueChange (obj.id, (int) WorldConstants.WorldMethods.STOP_CLIENT, args);
 	}
 
 	/// <summary>
@@ -133,11 +132,11 @@ public abstract class Entity : MonoBehaviour {
 		obj.vars ["r"] = JsonConvert.SerializeObject(new SerializableTransform(new Vector3 (x, y, z)));
 
 		Dictionary<int, string> args = new Dictionary<int, string> ();
-		args.Add (Constants.vars.Compress("velocity"), newVelocity.ToString());
-		args.Add (Constants.vars.Compress("x"), x.ToString());
-		args.Add (Constants.vars.Compress("y"), y.ToString());
-		args.Add (Constants.vars.Compress("z"), z.ToString());
-		obj.QueueChange (obj.id, "ClientRotate", args);
+		args.Add ((int) WorldConstants.WorldVars.VELOCITY , newVelocity.ToString());
+		args.Add ((int) WorldConstants.WorldVars.X, x.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Y, y.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Z, z.ToString());
+		obj.QueueChange (obj.id, (int) WorldConstants.WorldMethods.ROTATE_CLIENT, args);
 	}
 
 	/// <summary>
@@ -147,10 +146,10 @@ public abstract class Entity : MonoBehaviour {
 		obj.vars ["rV"] = "0";
 
 		Dictionary<int, string> args = new Dictionary<int, string> ();
-		args.Add (Constants.vars.Compress("x"), transform.eulerAngles.x.ToString());
-		args.Add (Constants.vars.Compress("y"), transform.eulerAngles.y.ToString());
-		args.Add (Constants.vars.Compress("z"), transform.eulerAngles.z.ToString());
-		obj.QueueChange(obj.id, "ClientStopRotate", args);
+		args.Add ((int) WorldConstants.WorldVars.X, transform.eulerAngles.x.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Y, transform.eulerAngles.y.ToString());
+		args.Add ((int) WorldConstants.WorldVars.Z, transform.eulerAngles.z.ToString());
+		obj.QueueChange(obj.id, (int) WorldConstants.WorldMethods.STOP_ROTATE_CLIENT, args);
 	}
 
 	/// <summary>
@@ -161,8 +160,8 @@ public abstract class Entity : MonoBehaviour {
 			obj.vars ["tP"] = LoadBalancer.connectionID.ToString ();
 
 			Dictionary<int, string> args = new Dictionary<int, string> ();
-			args.Add (Constants.vars.Compress ("name"), LoadBalancer.connectionID.ToString ());
-			ObjectCommunicator.CreateMessage (obj.id, "ClientChangeTempPlayer", args);
+			args.Add ((int) WorldConstants.WorldVars.NAME, LoadBalancer.connectionID.ToString ());
+			ObjectCommunicator.CreateMessage (obj.id, (int) WorldConstants.WorldMethods.CHANGE_PLAYER_TEMP, args);
 		}
 	}
 
@@ -174,8 +173,8 @@ public abstract class Entity : MonoBehaviour {
 			obj.vars ["tP"] = "";
 
 			Dictionary<int, string> args = new Dictionary<int, string> ();
-			args.Add (Constants.vars.Compress ("name"), "");
-			obj.QueueChange(obj.id, "ClientChangeTempPlayer", args);
+			args.Add ((int) WorldConstants.WorldVars.NAME, "");
+			obj.QueueChange(obj.id, (int) WorldConstants.WorldMethods.CHANGE_PLAYER_TEMP, args);
 		}
 	}
 	#endregion
@@ -186,12 +185,12 @@ public abstract class Entity : MonoBehaviour {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientMove(Dictionary<int, string> par){
-		float newVelocity = float.Parse (par [Constants.vars.Compress ("velocity")]);
-		float x = float.Parse (par [Constants.vars.Compress ("rX")]);
-		float y = float.Parse (par [Constants.vars.Compress ("rY")]);
-		float z = float.Parse (par [Constants.vars.Compress ("rZ")]);
-		obj.vars ["r"] = JsonConvert.SerializeObject (new SerializableTransform (new Vector3 (x, y, z)));
-		obj.vars ["mV"] = newVelocity.ToString ();
+		float newVelocity = float.Parse (par [(int) WorldConstants.WorldVars.VELOCITY]);
+		float x = float.Parse (par [(int) WorldConstants.WorldVars.ROTATION_X]);
+		float y = float.Parse (par [(int) WorldConstants.WorldVars.ROTATION_Y]);
+		float z = float.Parse (par [(int) WorldConstants.WorldVars.ROTATION_Z]);
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.ROTATION)] = JsonConvert.SerializeObject (new SerializableTransform (new Vector3 (x, y, z)));
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.VELOCITY)] = newVelocity.ToString ();
 	}
 
 	/// <summary>
@@ -199,13 +198,13 @@ public abstract class Entity : MonoBehaviour {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientStopMove(Dictionary<int, string> par){
-		float x = float.Parse(par [Constants.vars.Compress("x")]);
-		float y = float.Parse(par [Constants.vars.Compress("y")]);
-		float rX = float.Parse(par [Constants.vars.Compress("rX")]);
-		float rY = float.Parse(par [Constants.vars.Compress("rY")]);
-		float z = float.Parse(par [Constants.vars.Compress("z")]);
-		obj.vars ["mV"] = "0";
-		transform.position = new Vector3 (x, y, Constants.DEFAULTZ);
+		float x = float.Parse(par [(int) WorldConstants.WorldVars.X]);
+		float y = float.Parse(par [(int) WorldConstants.WorldVars.Y]);
+		float z = float.Parse(par [(int) WorldConstants.WorldVars.Z]);
+		float rX = float.Parse(par [(int) WorldConstants.WorldVars.ROTATION_X]);
+		float rY = float.Parse(par [(int) WorldConstants.WorldVars.ROTATION_Y]);
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.VELOCITY)] = "0";
+		transform.position = new Vector3 (x, y, WorldConstants.DEFAULTZ);
 		transform.eulerAngles = new Vector3 (rX, rY, z);
 	}
 
@@ -214,13 +213,13 @@ public abstract class Entity : MonoBehaviour {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientRotate(Dictionary<int, string> par){
-		float newVelocity = float.Parse(par [Constants.vars.Compress("velocity")]);
-		float x = float.Parse(par [Constants.vars.Compress("x")]);
-		float y = float.Parse(par [Constants.vars.Compress("y")]);
-		float z = float.Parse(par [Constants.vars.Compress("direction")]);
+		float newVelocity = float.Parse(par [(int) WorldConstants.WorldVars.VELOCITY]);
+		float x = float.Parse(par [(int) WorldConstants.WorldVars.X]);
+		float y = float.Parse(par [(int) WorldConstants.WorldVars.Y]);
+		float z = float.Parse(par [(int) WorldConstants.WorldVars.DIRECTION]);
 
-		obj.vars ["rV"] = newVelocity.ToString ();
-		obj.vars ["r"] = JsonConvert.SerializeObject(new SerializableTransform(new Vector3 (x, y, z)));
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.ROTATION_VELOCITY)] = newVelocity.ToString ();
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.ROTATION)] = JsonConvert.SerializeObject(new SerializableTransform(new Vector3 (x, y, z)));
 	}
 
 	/// <summary>
@@ -228,10 +227,10 @@ public abstract class Entity : MonoBehaviour {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientStopRotate(Dictionary<int, string> par){
-		float x = float.Parse(par [Constants.vars.Compress("x")]);
-		float y = float.Parse(par [Constants.vars.Compress("y")]);
-		float z = float.Parse(par [Constants.vars.Compress("z")]);
-		obj.vars ["rV"] = "0";
+		float x = float.Parse(par [(int) WorldConstants.WorldVars.X]);
+		float y = float.Parse(par [(int) WorldConstants.WorldVars.Y]);
+		float z = float.Parse(par [(int) WorldConstants.WorldVars.Z]);
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.ROTATION_VELOCITY)] = "0";
 		transform.eulerAngles = new Vector3 (x, y, z);
 	}
 
@@ -240,9 +239,9 @@ public abstract class Entity : MonoBehaviour {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientChangeTempPlayer(Dictionary<int, string> par){
-		string name = par [Constants.vars.Compress("name")];
+		string name = par [(int) WorldConstants.WorldVars.NAME];
 
-		obj.vars ["tP"] = name;
+		obj.vars [StringValue.GetStringValue(WorldConstants.WorldVars.TEMP_PLAYER)] = name;
 	}
 	#endregion
 

@@ -17,9 +17,9 @@ public class WorldObject : MonoBehaviour {
 	/// <param name="id">Identifier.</param>
 	/// <param name="message">Message.</param>
 	/// <param name="args">Arguments.</param>
-	public void QueueChange(string id, string message, Dictionary<int, string> args){
+	public void QueueChange(string id, int func, Dictionary<int, string> args){
 		if(LoadBalancer.totalPlayers > YamlConfig.config.minTotalPlayers)
-			ChangeCache.Enqueue(ObjectCommunicator.CreateMessage(id, message, args));
+			ChangeCache.Enqueue(ObjectCommunicator.CreateMessage(id, func, args));
 	}
 	#endregion
 
@@ -36,9 +36,9 @@ public class WorldObject : MonoBehaviour {
 		else
 			vars.Add (i, c);
 		Dictionary<int, string> args = new Dictionary<int, string> ();
-		args.Add (Constants.vars.Compress("x"), i);
-		args.Add (Constants.vars.Compress("y"), c);
-		QueueChange (id, "ClientChangeVars", args);
+		args.Add ((int) WorldConstants.WorldVars.X, i);
+		args.Add ((int) WorldConstants.WorldVars.Y, c);
+		QueueChange (id, (int) WorldConstants.WorldMethods.CHANGE_CLIENT_VARS, args);
 	}
 	#endregion
 
@@ -48,8 +48,8 @@ public class WorldObject : MonoBehaviour {
 	/// </summary>
 	/// <param name="par">Parameters.</param>
 	public void ClientChangeVars(Dictionary<int, string> par){
-		string i = par [Constants.vars.Compress("x")];
-		string c = par [Constants.vars.Compress("y")];
+		string i = par [(int) WorldConstants.WorldVars.X];
+		string c = par [(int) WorldConstants.WorldVars.Y];
 		if (vars.ContainsKey (i))
 			vars [i] = c;
 		else

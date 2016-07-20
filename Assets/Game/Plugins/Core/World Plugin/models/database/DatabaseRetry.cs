@@ -23,17 +23,17 @@ public class DatabaseRetry: MonoBehaviour {
 			currentDisplay = Instantiate (display);
 		} else if (show && currentDisplay != null) {
 			if (opactity < 1)
-				opactity += Constants.OPACADD;
+				opactity += WorldConstants.OPACADD;
 			currentDisplay.GetComponent<CanvasGroup> ().alpha = opactity;
 		}else if(!show && currentDisplay != null){
 			if (opactity > 0)
-				opactity -= Constants.OPACADD;
+				opactity -= WorldConstants.OPACADD;
 			currentDisplay.GetComponent<CanvasGroup> ().alpha = opactity;
 			if (opactity == 0)
 				Destroy (currentDisplay);
 		}
 
-		if (retry != null && Constants.RETRYTIME <= time)
+		if (retry != null && WorldConstants.RETRYTIME <= time)
 			Retry ();
 		else if(retry != null)
 			time += Time.deltaTime;

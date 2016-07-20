@@ -13,7 +13,8 @@ public class ObjectCommunicator {
 	/// <param name="change">Change.</param>
 	public static void SendChangeMessage(Change change){
 		if(WorldObjectCache.KeyCount() > change.id){
-			WorldObjectCache.GetObjectByIndex(change.id).gameObject.SendMessage(Constants.methods.Decompress(change.func), change.args);
+			WorldObjectCache.GetObjectByIndex(change.id).gameObject.SendMessage(
+				StringValue.GetStringValue((WorldConstants.WorldMethods) change.func), change.args);
 		}
 	} 
 
@@ -86,11 +87,11 @@ public class ObjectCommunicator {
 	/// <param name="id">Identifier.</param>
 	/// <param name="action">Action.</param>
 	/// <param name="parameters">Parameters.</param>
-	public static Change CreateMessage(string id, string action, Dictionary<int, string> parameters){
+	public static Change CreateMessage(string id, int action, Dictionary<int, string> parameters){
 		//SerializableDictionary dic = new SerializableDictionary ();
 		Change change = new Change ();
 		change.id = WorldObjectCache.GetIndexOfKey (id);
-		change.func = Constants.methods.Compress(action);
+		change.func = action;
 		//dic.Serialize (parameters);
 		change.args = parameters;
 		return change;

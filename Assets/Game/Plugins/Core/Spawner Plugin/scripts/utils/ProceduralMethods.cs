@@ -1,31 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProceduralMethods : MonoBehaviour {
-	public static ProceduralMethods main;
+public class ProceduralMethods {
+	private static Terrain terrain;
+	private static TerrainData  terrainData;
+	private static Vector3 terrainPos;
 
-	private Terrain terrain;
-	private TerrainData  terrainData;
-	private Vector3 terrainPos;
+	public static int GetTexture(Vector3 pos){
 
-
-	void Start() 
-	{
-		main = this;
 		terrain = Terrain.activeTerrain;
 		terrainData = terrain.terrainData;
 		terrainPos = terrain.transform.position;
-	}
 
-	public static int GetTexture(Vector3 pos){
-		if(main != null && pos != null)
-			return main.GetMainTexture (pos);
+		if(pos != null)
+			return GetMainTexture (pos);
 		return -1;
 	}
 	// ----
 
 
-	public float[] GetTextureMix( Vector3 worldPos)
+	public static float[] GetTextureMix( Vector3 worldPos)
 	{
 		// returns an array containing the relative mix of textures
 		// on the main terrain at this world position.
@@ -52,7 +46,7 @@ public class ProceduralMethods : MonoBehaviour {
 	}
 
 
-	public int GetMainTexture( Vector3 worldPos)
+	public static int GetMainTexture( Vector3 worldPos)
 	{
 		// returns the zero-based index of the most dominant texture
 		// on the main terrain at this world position.

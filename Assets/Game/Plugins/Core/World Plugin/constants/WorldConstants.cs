@@ -6,6 +6,7 @@ using System.Reflection;
 
 public class WorldConstants {
 	public enum WorldVars{
+		[StringValue("mV")] MOVE_VELOCITY,
 		[StringValue("v")] VELOCITY,  
 		[StringValue("d")] DIRECTION,  
 		[StringValue("x")] X, 
@@ -29,7 +30,7 @@ public class WorldConstants {
 		[StringValue("ClientChangeTempPlayer")] CHANGE_PLAYER_TEMP
 	}
 
-	public const int WORLD_VARS_LENGTH = 12;
+	public const int WORLD_VARS_LENGTH = 13;
 	public const int WORLD_METHODS_LENGTH = 6;
 
 	public static readonly float MOVEMENTFACTOR = 1;

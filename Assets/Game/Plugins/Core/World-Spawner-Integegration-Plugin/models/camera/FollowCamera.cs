@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FollowCamera : MonoBehaviour {
 	public float height;
-	public Transform follow{ get; set; }
+	public Transform follow;
 
 	void Update () {
 		if (Terrain.activeTerrain != null) {

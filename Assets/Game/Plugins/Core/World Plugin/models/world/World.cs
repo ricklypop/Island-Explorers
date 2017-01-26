@@ -43,9 +43,13 @@ public abstract class World: MonoBehaviour{
 	/// </summary>
 	public static void CreateWorld ()
 	{
-		foreach (SerializableWorldObject obj in WorldDatabase.world)
-			WorldObjectCache.Add(obj.id, obj.DecompressObject ().GetComponent<WorldObject> ());
+		
+		foreach (SerializableWorldObject obj in WorldDatabase.world) {
+			WorldObjectCache.Add (obj.id, obj.DecompressObject ().GetComponent<WorldObject> ());
+		}
+
 		Client.main.gotWorld = true;
 		LoadBalancer.Balance ();
+
 	}
 }

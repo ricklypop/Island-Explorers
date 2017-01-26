@@ -64,11 +64,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: 484_0
+    - serializedVersion: 2
+      name: 484_0
       rect:
         serializedVersion: 2
         x: 0
@@ -78,19 +81,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 3, y: 32}
-        - {x: 2, y: 23}
-        - {x: -3, y: 32}
-        - {x: -13, y: 32}
-        - {x: -20, y: 29}
-        - {x: -29, y: 20}
-        - {x: -32, y: 13}
-        - {x: -32, y: -14}
-        - {x: -22, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: 484_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_1
       rect:
         serializedVersion: 2
         x: 64
@@ -100,20 +94,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 18, y: 31}
-        - {x: 12, y: 29}
-        - {x: 11, y: 20}
-        - {x: 10, y: 32}
-        - {x: -28, y: 32}
-        - {x: -32, y: 20}
-        - {x: -32, y: -23}
-        - {x: -21, y: -31}
-        - {x: -17, y: -32}
-        - {x: 20, y: -32}
-        - {x: 32, y: -19}
-        - {x: 32, y: 22}
-    - name: 484_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_2
       rect:
         serializedVersion: 2
         x: 128
@@ -123,18 +107,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 24, y: 23}
-        - {x: 15, y: 17}
-        - {x: 26, y: 32}
-        - {x: -27, y: 32}
-        - {x: -32, y: 21}
-        - {x: -32, y: -25}
-        - {x: -20, y: -32}
-        - {x: 28, y: -32}
-        - {x: 32, y: -24}
-        - {x: 32, y: 22}
-    - name: 484_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_3
       rect:
         serializedVersion: 2
         x: 192
@@ -144,20 +120,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 27, y: 14}
-        - {x: 21, y: 8}
-        - {x: 30, y: 19}
-        - {x: 29, y: 23}
-        - {x: 16, y: 32}
-        - {x: -18, y: 32}
-        - {x: -32, y: 19}
-        - {x: -32, y: -27}
-        - {x: -16, y: -32}
-        - {x: 22, y: -32}
-        - {x: 32, y: -22}
-        - {x: 32, y: 14}
-    - name: 484_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_4
       rect:
         serializedVersion: 2
         x: 256
@@ -167,22 +133,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 26, y: 5}
-        - {x: 31, y: 7}
-        - {x: 32, y: 8}
-        - {x: 32, y: 19}
-        - {x: 19, y: 32}
-        - {x: -16, y: 32}
-        - {x: -32, y: 22}
-        - {x: -32, y: -16}
-        - {x: -20, y: -29}
-        - {x: -14, y: -32}
-        - {x: 15, y: -32}
-        - {x: 21, y: -30}
-        - {x: 32, y: -15}
-        - {x: 32, y: 2}
-    - name: 484_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_5
       rect:
         serializedVersion: 2
         x: 320
@@ -192,20 +146,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 22, y: -6}
-        - {x: 32, y: -2}
-        - {x: 32, y: 21}
-        - {x: 22, y: 32}
-        - {x: -22, y: 32}
-        - {x: -32, y: 29}
-        - {x: -32, y: -29}
-        - {x: -20, y: -32}
-        - {x: 19, y: -32}
-        - {x: 32, y: -16}
-        - {x: 32, y: -9}
-        - {x: 31, y: -7}
-    - name: 484_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_6
       rect:
         serializedVersion: 2
         x: 384
@@ -215,19 +159,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 32, y: -15}
-        - {x: 32, y: 19}
-        - {x: 19, y: 32}
-        - {x: -19, y: 32}
-        - {x: -32, y: 19}
-        - {x: -32, y: -29}
-        - {x: -22, y: -32}
-        - {x: 22, y: -32}
-        - {x: 29, y: -22}
-        - {x: 26, y: -16}
-        - {x: 16, y: -15}
-    - name: 484_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_7
       rect:
         serializedVersion: 2
         x: 448
@@ -237,18 +172,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 32, y: -21}
-        - {x: 32, y: 22}
-        - {x: 24, y: 32}
-        - {x: -32, y: 32}
-        - {x: -32, y: -24}
-        - {x: -30, y: -32}
-        - {x: 16, y: -32}
-        - {x: 21, y: -25}
-        - {x: 13, y: -19}
-        - {x: 26, y: -24}
-    - name: 484_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_8
       rect:
         serializedVersion: 2
         x: 512
@@ -258,21 +185,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 32, y: -26}
-        - {x: 32, y: 27}
-        - {x: 20, y: 32}
-        - {x: -25, y: 32}
-        - {x: -32, y: 22}
-        - {x: -32, y: -16}
-        - {x: -29, y: -20}
-        - {x: -20, y: -29}
-        - {x: -13, y: -32}
-        - {x: 8, y: -32}
-        - {x: 10, y: -25}
-        - {x: 13, y: -32}
-        - {x: 29, y: -32}
-    - name: 484_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_9
       rect:
         serializedVersion: 2
         x: 577
@@ -282,18 +198,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 32, y: -27}
-        - {x: 32, y: 30}
-        - {x: 30, y: 32}
-        - {x: -32, y: 32}
-        - {x: -32, y: -22}
-        - {x: -29, y: -32}
-        - {x: -4, y: -32}
-        - {x: -3, y: -23}
-        - {x: 2, y: -32}
-        - {x: 17, y: -32}
-    - name: 484_10
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_10
       rect:
         serializedVersion: 2
         x: 640
@@ -303,20 +211,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 21, y: 32}
-        - {x: -18, y: 32}
-        - {x: -32, y: 22}
-        - {x: -32, y: -16}
-        - {x: -20, y: -31}
-        - {x: -11, y: -30}
-        - {x: -11, y: -20}
-        - {x: -9, y: -29}
-        - {x: -8, y: -32}
-        - {x: 16, y: -32}
-        - {x: 32, y: -22}
-        - {x: 32, y: 18}
-    - name: 484_11
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_11
       rect:
         serializedVersion: 2
         x: 704
@@ -326,20 +224,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -18, y: 32}
-        - {x: -32, y: 22}
-        - {x: -32, y: -17}
-        - {x: -26, y: -24}
-        - {x: -22, y: -26}
-        - {x: -15, y: -12}
-        - {x: -23, y: -30}
-        - {x: -19, y: -32}
-        - {x: 23, y: -32}
-        - {x: 32, y: -19}
-        - {x: 32, y: 16}
-        - {x: 22, y: 32}
-    - name: 484_12
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_12
       rect:
         serializedVersion: 2
         x: 768
@@ -349,22 +237,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 21, y: 32}
-        - {x: -17, y: 32}
-        - {x: -30, y: 21}
-        - {x: -32, y: 18}
-        - {x: -32, y: -15}
-        - {x: -28, y: -13}
-        - {x: -21, y: -8}
-        - {x: -26, y: -16}
-        - {x: -28, y: -22}
-        - {x: -21, y: -31}
-        - {x: -16, y: -32}
-        - {x: 19, y: -32}
-        - {x: 32, y: -22}
-        - {x: 32, y: 18}
-    - name: 484_13
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_13
       rect:
         serializedVersion: 2
         x: 832
@@ -374,20 +250,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -18, y: 32}
-        - {x: -32, y: 22}
-        - {x: -32, y: -4}
-        - {x: -26, y: -5}
-        - {x: -31, y: -7}
-        - {x: -32, y: -8}
-        - {x: -32, y: -19}
-        - {x: -19, y: -32}
-        - {x: 27, y: -32}
-        - {x: 32, y: -22}
-        - {x: 32, y: 26}
-        - {x: 21, y: 32}
-    - name: 484_14
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_14
       rect:
         serializedVersion: 2
         x: 896
@@ -397,19 +263,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 32}
-        - {x: -32, y: 18}
-        - {x: -32, y: 9}
-        - {x: -31, y: 7}
-        - {x: -23, y: 6}
-        - {x: 6, y: -13}
-        - {x: -32, y: 6}
-        - {x: -32, y: -27}
-        - {x: -17, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: 484_15
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_15
       rect:
         serializedVersion: 2
         x: 960
@@ -419,18 +276,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -23, y: 32}
-        - {x: -30, y: 18}
-        - {x: -21, y: 13}
-        - {x: -27, y: 15}
-        - {x: -32, y: 13}
-        - {x: -32, y: -16}
-        - {x: -22, y: -32}
-        - {x: 29, y: -32}
-        - {x: 32, y: -31}
-        - {x: 32, y: 32}
-    - name: 484_16
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_16
       rect:
         serializedVersion: 2
         x: 1024
@@ -440,22 +289,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 22, y: 32}
-        - {x: -15, y: 32}
-        - {x: -19, y: 29}
-        - {x: -20, y: 24}
-        - {x: -8, y: 18}
-        - {x: -16, y: 21}
-        - {x: -26, y: 24}
-        - {x: -32, y: 21}
-        - {x: -32, y: -17}
-        - {x: -21, y: -31}
-        - {x: -16, y: -32}
-        - {x: 19, y: -32}
-        - {x: 32, y: -22}
-        - {x: 32, y: 18}
-    - name: 484_17
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 484_17
       rect:
         serializedVersion: 2
         x: 1088
@@ -465,19 +302,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -8, y: 32}
-        - {x: -10, y: 25}
-        - {x: -14, y: 30}
-        - {x: -16, y: 32}
-        - {x: -28, y: 32}
-        - {x: -32, y: 20}
-        - {x: -32, y: -24}
-        - {x: -22, y: -32}
-        - {x: 20, y: -32}
-        - {x: 32, y: -19}
-        - {x: 32, y: 22}
-        - {x: 16, y: 32}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 

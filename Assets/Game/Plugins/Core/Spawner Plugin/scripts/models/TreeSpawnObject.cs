@@ -9,8 +9,8 @@ public abstract class TreeSpawnObject : MonoBehaviour {
 	public int maxSpawn;
 	public List<Transform> extentions = new List<Transform>();
 	public List<int> canSpawnOn = new List<int> ();
-	public bool slopeTilt;
-	public bool spin;
+	public bool slopeTilt = false;
+	public bool spin = false;
 
 	private Queue<Spawn> spawns = new Queue<Spawn> ();
 
@@ -74,21 +74,29 @@ public abstract class TreeSpawnObject : MonoBehaviour {
 		if (Physics.Raycast(worldPos, Vector3.down, out hit)) {
 			Transform spawn = null;
 			if (prefab != null) {
-				spawn = (Transform)Instantiate (prefab, hit.point, Quaternion.identity);
-				if(spawn.GetComponent<TreeSpawnObject>().spin)
-					spawn.eulerAngles = new Vector3 (spawn.eulerAngles.x,Random.Range (0, 359), spawn.eulerAngles.z);
-				if(spawn.GetComponent<TreeSpawnObject>().slopeTilt)
-					spawn.rotation = Quaternion.FromToRotation(spawn.up, hit.normal) * spawn.rotation;
+				try{
+					
+					spawn = (Transform)Instantiate (prefab, hit.point, Quaternion.identity);
+					if(spawn.GetComponent<TreeSpawnObject>().spin)
+						spawn.eulerAngles = new Vector3 (spawn.eulerAngles.x, Random.Range (0, 359), spawn.eulerAngles.z);
+					
+					if(spawn.GetComponent<TreeSpawnObject>().slopeTilt)
+						spawn.rotation = Quaternion.FromToRotation(spawn.up, hit.normal) * spawn.rotation;
 
-				OnSpawn (spawn);
-//				WORLD OBJECT SPAWN EXAMPLE
-//				string id = UniqueIDGenerator.GetUniqueID ();
-//				go.GetComponent<WorldObject> ().id = id;
-//				WorldObjectCache.Add (id, go.GetComponent<WorldObject> ());
+					OnSpawn (spawn);
+//					WORLD OBJECT SPAWN EXAMPLE
+//					string id = UniqueIDGenerator.GetUniqueID ();
+//					go.GetComponent<WorldObject> ().id = id;
+//					WorldObjectCache.Add (id, go.GetComponent<WorldObject> ());
+
+				}catch(System.Exception e){
+					Debug.Log (spawn);
+				}
 			}
 			return spawn;
 		}
 		return null;
+		
 	}
 
 	public Texture getTerrainTextureAt( Vector3 position )
